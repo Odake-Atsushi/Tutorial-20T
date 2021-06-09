@@ -22,7 +22,6 @@ Proto_type_Declare functions
 inline void cb_msg_string(const std_msgs::String &msg);
 inline void cb_msg_int_array(const std_msgs::Int32MultiArray::ConstPtr &msg);
 　　
-
     /**********************************************************************
 Declare variables
 **********************************************************************/
