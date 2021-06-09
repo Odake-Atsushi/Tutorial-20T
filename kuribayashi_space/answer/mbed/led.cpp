@@ -22,7 +22,9 @@ int main()
             control_ticker.reset();
 
             if (SW.read() == 0 && a == 1)
+            {
                 led = !led;
+            }
 
             a = SW.read();
         }
