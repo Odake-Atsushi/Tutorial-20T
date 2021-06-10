@@ -3,16 +3,12 @@
 **********************************************************/
 
 #include "mbed.h"
-#include "servo_motor.h"
-#include "dc_motor_1.h"
 #include "rotary_encoder.h"
 
 #define CONTROL_CYCLE 0.02f
 
-// DigitalIn SW(A1); //303スイッチ
-
 /**********************************エンコーダの設定**********************************/
-rotary_encoder ENC_1(PB_7, PB_6, NC, 512, rotary_encoder::X4_ENCODING); //ENC_0
+rotary_encoder ENC_1(D4, D5, NC, 512, rotary_encoder::X4_ENCODING); //ENC_0
 Timer control_ticker;
 
 Serial PC(USBTX, USBRX, 115200);
