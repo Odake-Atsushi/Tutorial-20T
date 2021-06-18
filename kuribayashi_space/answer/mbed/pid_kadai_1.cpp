@@ -39,6 +39,7 @@ float target = 30.0;
 float enco_now = 0.0;
 float M0Output = 0.0;
 float rad_velocity = 0.0f;
+float time_check = 0.0;
 bool is_start = 0;
 /**********************************************************************
 Main
@@ -59,12 +60,13 @@ int main()
             }
             if (is_start == 1)
             {
+                time_check += CTRL_PERIOD;
                 enco_now = ENC_M.getRad();
                 rad_velocity = diff_enco.filter(enco_now); //角度を微分して角速度を求める
                 M0Output = pid.control(rad_velocity);      //現在の角速度を確認してpid制御
 
                 Motor.drive(M0Output);
-                PC.printf("%f %f\r\n", rad_velocity, M0Output);
+                PC.printf("%f,%f\r\n", time_check, rad_velocity);
 
             } //flag
         }     //制御周期
@@ -76,7 +78,7 @@ Functions
 void pid_init() //pid制御の設定を関数としてまとめる
 {
     pid.setTarget(target);
-    pid.setGain(7.0, 3.0, 0.0);
+    pid.setGain(5.0, 10.0, 0.0);
     pid.setEndStatus(0.5, 0.5);
     pid.setFirstPosition(0.0);
 }
